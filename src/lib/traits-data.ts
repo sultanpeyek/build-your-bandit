@@ -7,16 +7,9 @@ export const backgrounds = [
   'Hot Sand',
   'World at Dusk',
   'Cozy Bedroom',
-]
+];
 
-export const smokesticks = [
-  'Cigar',
-  'Cigarette',
-  "Farmer's Gum",
-  'Corn Cob Pipe',
-  'Wood Pipe',
-  'Jamaican Hay',
-]
+export const smokesticks = ['Cigar', 'Cigarette', "Farmer's Gum", 'Corn Cob Pipe', 'Wood Pipe', 'Jamaican Hay'];
 
 export const banditMasks = [
   'Red Bandana',
@@ -25,18 +18,11 @@ export const banditMasks = [
   'Blue Polka Rag',
   'Red Polka Rag',
   'Gray Bandana',
-]
+];
 
-export const kicks = [
-  'Cowboy Boots',
-  'Loafers',
-  'Dance Shoes',
-  'Oxford Shoes',
-  'Brogues',
-  'Mining Boots',
-]
+export const kicks = ['Cowboy Boots', 'Loafers', 'Dance Shoes', 'Oxford Shoes', 'Brogues', 'Mining Boots'];
 
-export const shades = ['Shine Shades']
+export const shades = ['Shine Shades'];
 
 export const trousers = [
   'Breeches',
@@ -48,7 +34,7 @@ export const trousers = [
   'Stuntman Pants',
   'Sunday Pants',
   'Faded Jeans',
-]
+];
 
 export const disguises = [
   'Vader Mask',
@@ -66,7 +52,7 @@ export const disguises = [
   'V Mask',
   'Nacho Mask',
   'R0b0 Mask',
-]
+];
 
 export const headgears = [
   'Blue Do-Rag',
@@ -113,7 +99,7 @@ export const headgears = [
   'Green Slouched Beanie',
   'Khaki Military Beanie',
   'Red Knit Beanie',
-]
+];
 
 export const habiliments = [
   'Rolled-Sleve Shirt',
@@ -135,7 +121,7 @@ export const habiliments = [
   'Buckskin Shirt',
   'Dress Shirt',
   "Farmer's Shirt",
-]
+];
 
 export const whiskersAndChinCurtains = [
   'The Horseshoe Red',
@@ -157,4 +143,4 @@ export const whiskersAndChinCurtains = [
   'Blonde Beard',
   'Red Beard',
   'Black Beard',
-]
+];

@@ -1,5 +1,11 @@
-'use client'
+'use client';
 
+import _ from 'lodash';
+import { Download, Loader, Shuffle } from 'lucide-react';
+import NextImage from 'next/image';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+import { Button } from '@/components/ui/Button';
 import {
   Select,
   SelectContent,
@@ -8,14 +14,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/Select'
-
-import {useState, useEffect, useRef, useCallback} from 'react'
-import _ from 'lodash'
-import NextImage from 'next/image'
-import {Button} from '@/components/ui/Button'
-import {Download, Shuffle, Loader} from 'lucide-react'
-import {useIsMounted} from '@/hooks/useIsMounted'
+} from '@/components/ui/Select';
 import {
   backgrounds,
   banditMasks,
@@ -27,105 +26,90 @@ import {
   smokesticks,
   trousers,
   whiskersAndChinCurtains,
-} from '@/lib/traits-data'
+} from '@/lib/traits-data';
 
 const Generator = () => {
-  const [background, setBackground] = useState('None')
-  const [body] = useState('body')
-  const [smokestick, setSmokestick] = useState('None')
-  const [banditMask, setBanditMask] = useState('None')
-  const [kick, setKick] = useState('None')
-  const [shade, setShade] = useState('None')
-  const [disguise, setDisguise] = useState('None')
-  const [trouser, setTrouser] = useState('None')
-  const [headgear, setHeadgear] = useState('None')
-  const [habiliment, setHabiliment] = useState('None')
-  const [whiskerAndChinCurtain, setWhiskerAndChinCurtain] = useState('None')
+  const [background, setBackground] = useState('Hot Sand');
+  const [body] = useState('Body');
+  const [smokestick, setSmokestick] = useState('Cigar');
+  const [banditMask, setBanditMask] = useState('None');
+  const [kick, setKick] = useState('None');
+  const [shade, setShade] = useState('None');
+  const [disguise, setDisguise] = useState('None');
+  const [trouser, setTrouser] = useState('Velvet Pants');
+  const [headgear, setHeadgear] = useState('None');
+  const [habiliment, setHabiliment] = useState('None');
+  const [whiskerAndChinCurtain, setWhiskerAndChinCurtain] = useState('None');
 
-  const [generatedImage, setGeneratedImage] = useState(null)
+  const [generatedImage, setGeneratedImage] = useState<string | null>(null);
 
-  const canvasRef = useRef(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const generateCanvasImage = useCallback(async () => {
+    setGeneratedImage(null);
     try {
-      const canvas: any = canvasRef.current
+      const canvas = canvasRef.current;
 
-      const ctx = canvas.getContext('2d')
+      const ctx = canvas?.getContext('2d');
 
-      if (background !== 'none') {
-        const backgroundImg = await loadImage(
-          `images/traits/backgrounds/${background}.png`,
-        )
-        ctx.drawImage(backgroundImg, 0, 0)
+      if (background !== 'None') {
+        const backgroundImg = await loadImage(`images/traits/backgrounds/${background}.png`);
+        ctx?.drawImage(backgroundImg as CanvasImageSource, 0, 0);
       }
 
-      if (body !== 'none') {
-        const bodyImg = await loadImage(`images/traits/body/${body}.png`)
-        ctx.drawImage(bodyImg, 0, 0)
+      const bodyImg = await loadImage(`images/traits/body/${body}.png`);
+      ctx?.drawImage(bodyImg as CanvasImageSource, 0, 0);
+
+      if (smokestick !== 'None') {
+        const smokestickImg = await loadImage(`images/traits/smokesticks/${smokestick}.png`);
+        ctx?.drawImage(smokestickImg as CanvasImageSource, 0, 0);
       }
 
-      if (smokestick !== 'none') {
-        const smokestickImg = await loadImage(
-          `images/traits/smokesticks/${smokestick}.png`,
-        )
-        ctx.drawImage(smokestickImg, 0, 0)
+      if (banditMask !== 'None') {
+        const banditMaskImg = await loadImage(`images/traits/bandit-masks/${banditMask}.png`);
+        ctx?.drawImage(banditMaskImg as CanvasImageSource, 0, 0);
       }
 
-      if (banditMask !== 'none') {
-        const banditMaskImg = await loadImage(
-          `images/traits/bandit-masks/${banditMask}.png`,
-        )
-        ctx.drawImage(banditMaskImg, 0, 0)
+      if (kick !== 'None') {
+        const kickImg = await loadImage(`images/traits/kicks/${kick}.png`);
+        ctx?.drawImage(kickImg as CanvasImageSource, 0, 0);
       }
 
-      if (kick !== 'none') {
-        const kickImg = await loadImage(`images/traits/kicks/${kick}.png`)
-        ctx.drawImage(kickImg, 0, 0)
+      if (shade !== 'None') {
+        const shadeImg = await loadImage(`images/traits/shades/${shade}.png`);
+        ctx?.drawImage(shadeImg as CanvasImageSource, 0, 0);
       }
 
-      if (shade !== 'none') {
-        const shadeImg = await loadImage(`images/traits/shades/${shade}.png`)
-        ctx.drawImage(shadeImg, 0, 0)
+      if (disguise !== 'None') {
+        const disguiseImg = await loadImage(`images/traits/disguises/${disguise}.png`);
+        ctx?.drawImage(disguiseImg as CanvasImageSource, 0, 0);
       }
 
-      if (disguise !== 'none') {
-        const disguiseImg = await loadImage(
-          `images/traits/disguises/${disguise}.png`,
-        )
-        ctx.drawImage(disguiseImg, 0, 0)
+      if (trouser !== 'None') {
+        const trouserImg = await loadImage(`images/traits/trousers/${trouser}.png`);
+        ctx?.drawImage(trouserImg as CanvasImageSource, 0, 0);
       }
 
-      if (trouser !== 'none') {
-        const trouserImg = await loadImage(
-          `images/traits/trousers/${trouser}.png`,
-        )
-        ctx.drawImage(trouserImg, 0, 0)
+      if (headgear !== 'None') {
+        const headgearImg = await loadImage(`images/traits/headgears/${headgear}.png`);
+        ctx?.drawImage(headgearImg as CanvasImageSource, 0, 0);
       }
 
-      if (headgear !== 'none') {
-        const headgearImg = await loadImage(
-          `images/traits/headgears/${headgear}.png`,
-        )
-        ctx.drawImage(headgearImg, 0, 0)
+      if (habiliment !== 'None') {
+        const habilimentImg = await loadImage(`images/traits/habiliments/${habiliment}.png`);
+        ctx?.drawImage(habilimentImg as CanvasImageSource, 0, 0);
       }
 
-      if (habiliment !== 'none') {
-        const habilimentImg = await loadImage(
-          `images/traits/habiliments/${habiliment}.png`,
-        )
-        ctx.drawImage(habilimentImg, 0, 0)
-      }
-
-      if (whiskerAndChinCurtain !== 'none') {
+      if (whiskerAndChinCurtain !== 'None') {
         const whiskerAndChinCurtainImg = await loadImage(
           `images/traits/whiskers-and-chin-curtains/${whiskerAndChinCurtain}.png`,
-        )
-        ctx.drawImage(whiskerAndChinCurtainImg, 0, 0)
+        );
+        ctx?.drawImage(whiskerAndChinCurtainImg as CanvasImageSource, 0, 0);
       }
 
-      return canvas.toDataURL('image/png')
+      return canvas?.toDataURL('image/png');
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }, [
     background,
@@ -139,54 +123,39 @@ const Generator = () => {
     smokestick,
     trouser,
     whiskerAndChinCurtain,
-  ])
+  ]);
 
   const generateRandomImage = useCallback(async () => {
-    setBackground(_.sample(backgrounds) as string)
-    setSmokestick(_.sample(smokesticks) as string)
-    setBanditMask(_.sample(banditMasks) as string)
-    setKick(_.sample(kicks) as string)
-    setShade(_.sample(shades) as string)
-    setDisguise(_.sample(disguises) as string)
-    setTrouser(_.sample(trousers) as string)
-    setHeadgear(_.sample(headgears) as string)
-    setHabiliment(_.sample(habiliments) as string)
-    setWhiskerAndChinCurtain(_.sample(whiskersAndChinCurtains) as string)
+    setBackground(_.sample(backgrounds) as string);
+    setSmokestick(_.sample(smokesticks) as string);
+    setBanditMask(_.sample(banditMasks) as string);
+    setKick(_.sample(kicks) as string);
+    setShade(_.sample(shades) as string);
+    setDisguise(_.sample(disguises) as string);
+    setTrouser(_.sample(trousers) as string);
+    setHeadgear(_.sample(headgears) as string);
+    setHabiliment(_.sample(habiliments) as string);
+    setWhiskerAndChinCurtain(_.sample(whiskersAndChinCurtains) as string);
 
-    const generatedImageUrl = await generateCanvasImage()
-    setGeneratedImage(generatedImageUrl)
-  }, [generateCanvasImage])
+    const generatedImageUrl = (await generateCanvasImage()) as string;
+    setGeneratedImage(generatedImageUrl);
+  }, [generateCanvasImage]);
 
-  const handleTraitChange = async () => {
-    setGeneratedImage(null)
-    const generatedImageUrl = await generateCanvasImage()
-    setGeneratedImage(generatedImageUrl)
-  }
+  const handleDownloadClick = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    const generatedImageUrl = await generateCanvasImage();
 
-  const handleDownloadClick = async (e: {preventDefault: () => void}) => {
-    e.preventDefault()
-    const generatedImageUrl = await generateCanvasImage()
-
-    const link = document.createElement('a')
-    link.download = 'bandit.png'
-    link.href = generatedImageUrl
-    link.click()
-  }
-
-  const isMounted = useIsMounted()
-
-  const runOnMountOnce = useRef(false)
+    const link = document.createElement('a');
+    link.download = 'bandit.png';
+    link.href = generatedImageUrl ?? '';
+    link.click();
+  };
 
   useEffect(() => {
-    if (isMounted && runOnMountOnce.current === false) {
-      generateRandomImage()
-      runOnMountOnce.current = true
-    }
-  }, [generateRandomImage, isMounted])
-
-  useEffect(() => {
-    generateCanvasImage()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    (async () => {
+      const generatedImageUrl = await generateCanvasImage();
+      setGeneratedImage(generatedImageUrl ?? '');
+    })();
   }, [
     background,
     body,
@@ -199,20 +168,21 @@ const Generator = () => {
     headgear,
     habiliment,
     whiskerAndChinCurtain,
-  ])
+    generateCanvasImage,
+  ]);
 
   function loadImage(src: string) {
     return new Promise((resolve, reject) => {
-      const img = new Image()
-      img.onload = () => resolve(img)
-      img.onerror = reject
-      img.src = src
-    })
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = src;
+    });
   }
 
   return (
-    <div className="lg:flex flex-row w-full mx-auto gap-6">
-      <div className="flex justify-center items-start flex-none mb-8 lg:mb-0 basis-[360px]">
+    <div className="mx-auto w-full flex-row gap-6 lg:flex">
+      <div className="mb-8 flex flex-none basis-[360px] items-start justify-center lg:mb-0">
         {generatedImage ? (
           <NextImage
             src={generatedImage ?? '/public/placeholder.png'}
@@ -220,32 +190,27 @@ const Generator = () => {
             className="max-w-full rounded"
             width={360}
             height={360}
+            style={{
+              imageRendering: 'pixelated',
+            }}
           />
         ) : (
-          <div className="text-black w-[360px] max-w-full aspect-square bg-primary flex items-center justify-center text-xl rounded">
+          <div className="flex aspect-square w-[360px] max-w-full items-center justify-center rounded bg-primary text-xl text-black">
             <Loader className="animate-spin" size={36} />
           </div>
         )}
-        <canvas
-          ref={canvasRef}
-          width={360}
-          height={360}
-          className="hidden"
-        ></canvas>
+        <canvas ref={canvasRef} width={360} height={360} className="hidden"></canvas>
       </div>
       <form onSubmit={handleDownloadClick} className="flex-auto">
         <div className="space-y-4">
-          <Select
-            onValueChange={value => setBackground(value)}
-            value={background}
-          >
+          <Select onValueChange={value => setBackground(value)} value={background}>
             <SelectTrigger>
               <SelectValue placeholder="--- Select Background" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>--- Backgrounds</SelectLabel>
-                <SelectItem value="none">None</SelectItem>
+                <SelectItem value="None">None</SelectItem>
                 {backgrounds.map((value, index) => (
                   <SelectItem key={`backgrounds-${index}`} value={value}>
                     {value}
@@ -254,17 +219,14 @@ const Generator = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
-          <Select
-            onValueChange={value => setSmokestick(value)}
-            value={smokestick}
-          >
+          <Select onValueChange={value => setSmokestick(value)} value={smokestick}>
             <SelectTrigger className="placeholder:text-red-50">
               <SelectValue placeholder="--- Select Smokestick" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>--- Smokesticks</SelectLabel>
-                <SelectItem value="none">None</SelectItem>
+                <SelectItem value="None">None</SelectItem>
                 {smokesticks.map((value, index) => (
                   <SelectItem key={`smokesticks-${index}`} value={value}>
                     {value}
@@ -273,17 +235,14 @@ const Generator = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
-          <Select
-            onValueChange={value => setBanditMask(value)}
-            value={banditMask}
-          >
+          <Select onValueChange={value => setBanditMask(value)} value={banditMask}>
             <SelectTrigger>
               <SelectValue placeholder="--- Select Bandit Mask" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>--- Bandit Masks</SelectLabel>
-                <SelectItem value="none">None</SelectItem>
+                <SelectItem value="None">None</SelectItem>
                 {banditMasks.map((value, index) => (
                   <SelectItem key={`banditMasks-${index}`} value={value}>
                     {value}
@@ -299,7 +258,7 @@ const Generator = () => {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>--- Kicks</SelectLabel>
-                <SelectItem value="none">None</SelectItem>
+                <SelectItem value="None">None</SelectItem>
                 {kicks.map((value, index) => (
                   <SelectItem key={`kicks-${index}`} value={value}>
                     {value}
@@ -315,7 +274,7 @@ const Generator = () => {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>--- Shine Shades</SelectLabel>
-                <SelectItem value="none">None</SelectItem>
+                <SelectItem value="None">None</SelectItem>
                 {shades.map((value, index) => (
                   <SelectItem key={`shades-${index}`} value={value}>
                     {value}
@@ -331,7 +290,7 @@ const Generator = () => {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>--- Disguises</SelectLabel>
-                <SelectItem value="none">None</SelectItem>
+                <SelectItem value="None">None</SelectItem>
                 {disguises.map((value, index) => (
                   <SelectItem key={`disguises-${index}`} value={value}>
                     {value}
@@ -347,7 +306,7 @@ const Generator = () => {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>--- Trouser</SelectLabel>
-                <SelectItem value="none">None</SelectItem>
+                <SelectItem value="None">None</SelectItem>
                 {trousers.map((value, index) => (
                   <SelectItem key={`trousers-${index}`} value={value}>
                     {value}
@@ -363,7 +322,7 @@ const Generator = () => {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>--- Headgears</SelectLabel>
-                <SelectItem value="none">None</SelectItem>
+                <SelectItem value="None">None</SelectItem>
                 {headgears.map((value, index) => (
                   <SelectItem key={`headgears-${index}`} value={value}>
                     {value}
@@ -372,17 +331,14 @@ const Generator = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
-          <Select
-            onValueChange={value => setHabiliment(value)}
-            value={habiliment}
-          >
+          <Select onValueChange={value => setHabiliment(value)} value={habiliment}>
             <SelectTrigger>
               <SelectValue placeholder="--- Select Habiliment" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>--- Habiliments</SelectLabel>
-                <SelectItem value="none">None</SelectItem>
+                <SelectItem value="None">None</SelectItem>
                 {habiliments.map((value, index) => (
                   <SelectItem key={`habiliments-${index}`} value={value}>
                     {value}
@@ -391,22 +347,16 @@ const Generator = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
-          <Select
-            onValueChange={value => setWhiskerAndChinCurtain(value)}
-            value={whiskerAndChinCurtain}
-          >
+          <Select onValueChange={value => setWhiskerAndChinCurtain(value)} value={whiskerAndChinCurtain}>
             <SelectTrigger>
               <SelectValue placeholder="--- Whiskers & Chin Curtains" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>--- Whiskers &amp; Chin Curtains</SelectLabel>
-                <SelectItem value="none">None</SelectItem>
+                <SelectItem value="None">None</SelectItem>
                 {whiskersAndChinCurtains.map((value, index) => (
-                  <SelectItem
-                    key={`whiskersAndChinCurtains-${index}`}
-                    value={value}
-                  >
+                  <SelectItem key={`whiskersAndChinCurtains-${index}`} value={value}>
                     {value}
                   </SelectItem>
                 ))}
@@ -414,12 +364,8 @@ const Generator = () => {
             </SelectContent>
           </Select>
         </div>
-        <div className="block space-y-4 lg:space-y-0 lg:flex flex-row lg:gap-4 mt-4">
-          <Button
-            type="submit"
-            variant="primary"
-            className="w-full lg:w-auto space-x-2 flex-1"
-          >
+        <div className="mt-4 block flex-row space-y-4 lg:flex lg:gap-4 lg:space-y-0">
+          <Button type="submit" variant="primary" className="w-full flex-1 space-x-2 lg:w-auto">
             <span>Download</span>
             <Download />
           </Button>
@@ -427,7 +373,7 @@ const Generator = () => {
             type="button"
             onClick={generateRandomImage}
             variant="subtle"
-            className="w-full lg:w-auto space-x-2 flex-1"
+            className="w-full flex-1 space-x-2 lg:w-auto"
           >
             <span>Randomize</span>
             <Shuffle />
@@ -435,7 +381,7 @@ const Generator = () => {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Generator
+export default Generator;

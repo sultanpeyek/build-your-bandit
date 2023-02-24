@@ -4,6 +4,6 @@ const nextConfig = {
     appDir: true,
     typedRoutes: true,
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

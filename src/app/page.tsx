@@ -1,26 +1,25 @@
-import Generator from '@/components/Generator'
-import Image from 'next/image'
+import Image from 'next/image';
+
+import Generator from '@/components/Generator';
 
 export default function Home() {
   return (
     <>
-      <main className="max-w-screen-md mx-auto p-4 min-h-[calc(100vh-50px)] pb-10">
-        <div className="flex gap-2 items-center">
+      <main className="mx-auto min-h-[calc(100vh-50px)] max-w-screen-md p-4 pb-10">
+        <div className="flex items-center gap-2">
           <Image src="/images/logo.png" alt="" width={81} height={81} />
-          <h1 className="font-bold text-xl lg:text-3xl text-primary">
-            Build your Bandit
-          </h1>
+          <h1 className="text-xl font-bold text-primary lg:text-3xl">Build your Bandit</h1>
         </div>
         <div className="my-10 text-xs lg:text-base">
-          Create your one-of-a-kind bandit with this interactive web app. Choose
-          unique pixel art traits such as backgrounds, masks, and accessories,
-          then download your custom image with just one click!
+          Create your one-of-a-kind bandit with this interactive web app. Choose unique pixel art traits such as
+          backgrounds, masks, and accessories, then download your custom image with just one click!
         </div>
         <Generator />
         <a
           href="https://github.com/sultanpeyek"
           target="_blank"
-          className="right-0 absolute top-0 max-w-full cursor-pointer"
+          className="absolute right-0 top-0 max-w-full cursor-pointer"
+          rel="noreferrer"
         >
           {
             // eslint-disable-next-line @next/next/no-img-element
@@ -35,18 +34,19 @@ export default function Home() {
           }
         </a>
       </main>
-      <footer className="flex-none h-[50px] text-center px-4">
+      <footer className="h-[50px] flex-none px-4 text-center">
         Made with love by{' '}
         <a
           href="https://twitter.com/sultanpeyek"
           className="font-bold text-primary hover:underline"
           target="_blank"
+          rel="noreferrer"
         >
           @sultanpeyek
         </a>
       </footer>
     </>
-  )
+  );
 }
 
 export const metadata = {
@@ -73,4 +73,4 @@ export const metadata = {
     locale: 'en-US',
     type: 'website',
   },
-}
+};
