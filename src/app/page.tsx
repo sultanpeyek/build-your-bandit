@@ -1,91 +1,76 @@
+import Generator from '@/components/Generator'
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+    <>
+      <main className="max-w-screen-md mx-auto p-4 min-h-[calc(100vh-50px)] pb-10">
+        <div className="flex gap-2 items-center">
+          <Image src="/images/logo.png" alt="" width={81} height={81} />
+          <h1 className="font-bold text-xl lg:text-3xl text-primary">
+            Build your Bandit
+          </h1>
+        </div>
+        <div className="my-10 text-xs lg:text-base">
+          Create your one-of-a-kind bandit with this interactive web app. Choose
+          unique pixel art traits such as backgrounds, masks, and accessories,
+          then download your custom image with just one click!
+        </div>
+        <Generator />
+        <a
+          href="https://github.com/sultanpeyek"
+          target="_blank"
+          className="right-0 absolute top-0 max-w-full cursor-pointer"
+        >
+          {
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              loading="lazy"
+              width="129"
+              height="129"
+              src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png?resize=149%2C149"
+              alt="Fork me on GitHub"
+              data-recalc-dims="1"
             />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
+          }
         </a>
-
+      </main>
+      <footer className="flex-none h-[50px] text-center px-4">
+        Made with love by{' '}
         <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
+          href="https://twitter.com/sultanpeyek"
+          className="font-bold text-primary hover:underline"
           target="_blank"
-          rel="noopener noreferrer"
         >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
+          @sultanpeyek
         </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      </footer>
+    </>
   )
+}
+
+export const metadata = {
+  title: 'Build your Bandit',
+  description:
+    'Create your one-of-a-kind bandit with this interactive web app. Choose unique pixel art traits such as backgrounds, masks, and accessories, then download your custom image with just one click!',
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/shortcut-icon.png',
+  },
+  openGraph: {
+    title: 'Build your Bandit',
+    description:
+      'Create your one-of-a-kind bandit with this interactive web app. Choose unique pixel art traits such as backgrounds, masks, and accessories, then download your custom image with just one click!',
+    url: 'https://build-your-bandit.vercel.app/',
+    siteName: 'Next.js',
+    images: [
+      {
+        url: 'https://build-your-bandit.vercel.app/images/banner.jpg',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'en-US',
+    type: 'website',
+  },
 }
