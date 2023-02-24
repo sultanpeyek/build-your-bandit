@@ -62,8 +62,13 @@ export const metadata = {
     description:
       'Create your one-of-a-kind bandit with this interactive web app. Choose unique pixel art traits such as backgrounds, masks, and accessories, then download your custom image with just one click!',
     url: 'https://build-your-bandit.vercel.app/',
-    siteName: 'Next.js',
+    siteName: 'Build your Bandit',
     images: [
+      {
+        url: 'https://build-your-bandit.vercel.app/images/logo.png',
+        width: 81,
+        height: 81,
+      },
       {
         url: 'https://build-your-bandit.vercel.app/images/banner.jpg',
         width: 1200,
